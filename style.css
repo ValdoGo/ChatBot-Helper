@@ -1,0 +1,281 @@
+:root {
+  --topo-whatsapp: #075E54;    /* Verde escuro do topo */
+  --fundo-whatsapp: #E5DDD5;   /* Bege acinzentado do fundo das mensagens */
+  --balao-bot: #FFFFFF;        /* Branco para quem recebe */
+  --balao-user: #DCF8C6;       /* Verde clarinho para quem envia */
+  --texto-preto: #303030;      /* Cor do texto para leitura fácil */
+  --principal: #0e2978;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5efe6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  font-family: sans-serif;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  max-width: 400px;
+  height: 600px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  bottom: 80px; /* Ajustei para ficar acima do botão toggle */
+  right: 20px;
+
+  /* --- MÁGICA DA TRANSIÇÃO --- */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  transform-origin: bottom right; /* Animação parte do botão */
+  opacity: 1;
+  pointer-events: all; /* Permite clicar */
+  transform: translateY(0) scale(1);
+  overflow: hidden;
+  
+}
+
+.topo{
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  background-color: var(--topo-whatsapp);
+  height: 60px;
+  width: 100%;
+ border-radius: 10px 10px 0 0;
+  padding: 5px;
+  gap: 3px;
+  padding-right: 2px;
+  padding-left: 8px;
+}
+.text{
+  color: white;
+}
+
+.icon {
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+   margin-right: 3px;
+ 
+
+}
+.box{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.fas1 {
+  color: var(--principal) ;
+}
+.fas2 {
+  display: flex;
+  color: white ;
+  margin-right: 17px;
+  cursor: pointer;
+  transition: transform ease 0.5s;
+}
+
+.fas2:hover {
+  transform: translateY(4px);
+}
+
+
+.baixo{
+  display: flex;
+  border-radius: 10px;
+  border: solid 1px var(--principal);
+  min-height: 70px;
+
+  margin: 19px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  
+
+
+}
+
+.input-msg{
+ width: 300px;
+  outline: none;
+  border : 0;
+  margin-left: 5px;
+  resize: none;
+  overflow-y: scroll;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  scrollbar-width:none;
+  margin-right: 10px;
+
+}
+
+.send-icon{
+  color: white;
+  background-color: var(--principal);
+  border-radius: 50%;
+  padding: 10px;
+  transition: transform 0.4s;
+  cursor: pointer;
+  margin-right:10px;
+  
+}
+
+.send-icon:hover{
+  transform: scale(1.1);
+}
+
+.msg {
+  flex: 1;                /* Ocupa o espaço central disponível */
+  overflow-y: auto;       /* Ativa o scroll vertical quando necessário */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  
+  /* Deixar o scroll elegante (opcional) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--principal) #f0f0f0;
+  background-color: var(--fundo-whatsapp);
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); /* Pattern clássico do zap */
+    background-blend-mode: overlay;
+}
+
+/* Customizando a barra de rolagem no Chrome/Safari */
+.msg::-webkit-scrollbar {
+  width: 6px;
+}
+.msg::-webkit-scrollbar-thumb {
+  background-color: var(--principal);
+  border-radius: 10px;
+}
+
+
+.sender{
+  display: flex;
+  align-items: center;
+}
+.receiver{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+.sbox{
+  margin-top: 10px;
+  display: flex;
+
+  min-height: 30px;
+  max-width: 270px;
+  padding: 10px;
+
+  align-items: center;
+  gap: 10px;
+
+  justify-content: center;
+  margin-left: 10px;
+
+  background-color: var(--balao-bot) !important;
+    color: var(--texto-preto) !important;
+    border-radius: 0 15px 15px 15px; /* Estilo de "cauda" do zap */
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.amos{
+  margin-left: 20px;
+}
+
+.amos2{
+  margin-right: 20px;
+}
+.sboxr{
+  display: flex;
+  min-height: 30px;
+  max-width: 270px;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+
+  justify-content: center;
+  margin-right: 10px;
+  margin-top: 10px;
+
+  background-color: var(--balao-user) !important;
+    color: var(--texto-preto) !important;
+    border-radius: 15px 0 15px 15px; /* Estilo de "cauda" do zap */
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+
+.toggle{
+  display: flex;
+  background-color: var(--principal);
+  width: 50px;
+  height: 50px;
+  z-index: 12;
+  position: fixed;
+  bottom:10px;
+  right: 50px;
+  padding: 20px;
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  justify-content: center;
+  color: #f5efe6;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hidden {
+  
+  opacity: 0 !important;
+  transform: translateY(20px) scale(0.8) !important;
+  pointer-events: none !important; /* Impede clicar no chat enquanto invisível */
+}
+
+/* Garante que o toggle seja clicável */
+.toggle {
+    cursor: pointer;
+}
+
+
+.opcoes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0;
+    align-items: flex-start;
+}
+
+.btn-opcao {
+    display: flex;
+  
+    
+   
+    padding: 8px 15px;
+
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+   margin-left: 10px;
+
+  background-color: white;
+    border: 1px solid #cce;
+    color: #075E54;
+    border-radius: 18px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.btn-opcao:hover {
+    background-color: var(--principal);
+    color: white;
+}
+
+

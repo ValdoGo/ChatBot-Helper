@@ -27,22 +27,27 @@ body {
   flex-direction: column;
   justify-content: space-between;
   background: white;
-  max-width: 400px;
+  
+  /* AJUSTE AQUI: 90% da largura da tela no mobile, mas máximo de 400px */
+  width: 90vw; 
+  max-width: 400px; 
+  
   height: 600px;
+  max-height: 80vh; /* Não ultrapassa 80% da altura da tela */
+  
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   position: fixed;
-  bottom: 80px; /* Ajustei para ficar acima do botão toggle */
+  bottom: 80px;
   right: 20px;
 
-  /* --- MÁGICA DA TRANSIÇÃO --- */
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-  transform-origin: bottom right; /* Animação parte do botão */
+  transform-origin: bottom right;
   opacity: 1;
-  pointer-events: all; /* Permite clicar */
+  pointer-events: all;
   transform: translateY(0) scale(1);
   overflow: hidden;
-  
+  z-index: 1000; /* Garante que fique acima de tudo */
 }
 
 .topo{
@@ -277,5 +282,25 @@ body {
     background-color: var(--principal);
     color: white;
 }
+@media (max-width: 480px) {
+  .main {
+    right: 5%; /* Centraliza um pouco mais */
+    left: 5%;
+    width: 90%;
+    bottom: 75px;
+    height: 70vh; /* No celular, é melhor ser um pouco mais baixo */
+  }
 
+  .toggle {
+    right: 20px; /* Move o botão de abrir mais para o canto no mobile */
+  }
+
+  .sbox, .sboxr {
+    max-width: 80%; /* Garante que os balões não batam na parede da tela */
+  }
+
+  .input-msg {
+    width: 100%; /* O input ocupa o que der */
+  }
+}
 
